@@ -1,0 +1,11 @@
+node{
+    stage('scm package'){
+        git credentialsId: 'git-credits', url: 'https://github.com/mano8888/dcc.git'
+    }
+    stage('mvn package'){
+        sh 'mvn clean package'
+    }
+    stage('build docker image'){
+        sh 'docker build -t mano8888/dbs .'
+    }
+}
